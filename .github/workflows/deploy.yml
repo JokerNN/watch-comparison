@@ -15,7 +15,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  pages-unavailable:
+    if: ${{ github.event.repository.private }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain skip for private repositories
+        run: |
+          echo "GitHub Pages deployment is skipped because this repository is private."
+          echo "Enable Pages support for private repos via a compatible paid/enterprise plan,"
+          echo "or make the repository public, then rerun this workflow."
+
   build:
+    if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,6 +53,7 @@ jobs:
           path: ./dist
 
   deploy:
+    if: ${{ !github.event.repository.private }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
