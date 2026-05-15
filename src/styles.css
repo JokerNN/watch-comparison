@@ -74,6 +74,7 @@ button {
 .leaderboard h2 { margin-top: 0.2rem; }
 .leaderboard-list { display: grid; gap: 0.45rem; }
 .leader-row {
+  position: relative;
   display: grid;
   grid-template-columns: 60px 1.8fr 1fr 1fr 0.7fr;
   gap: 0.75rem;
@@ -90,9 +91,44 @@ button {
 @media (max-width: 800px) {
   .voting-grid { grid-template-columns: 1fr; }
   .leader-row {
+  position: relative;
     grid-template-columns: 52px 1fr;
   }
   .leader-row span:nth-child(n+3) {
     grid-column: 2;
   }
+}
+
+
+.leader-hover-card {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  left: 0.6rem;
+  z-index: 20;
+  width: min(280px, calc(100vw - 2rem));
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+  padding: 0.55rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.leader-row:hover .leader-hover-card,
+.leader-row:focus-within .leader-hover-card {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.leader-hover-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 0.35rem;
 }

@@ -25,10 +25,6 @@ interface WatchCardProps {
   flash?: boolean;
 }
 
-interface LeaderboardProps {
-  watches: Watch[];
-  leaderId?: number;
-}
 
 const STORAGE_KEY = 'birthday-watch-battle-state-v1';
 
@@ -76,7 +72,7 @@ const WatchCard = ({ watch, onChoose, highlighted = false, flash = false }: Watc
   </article>
 );
 
-const Leaderboard = ({ watches, leaderId }: LeaderboardProps): JSX.Element => (
+const Leaderboard = ({ watches, leaderId }: { watches: Watch[]; leaderId?: number }): JSX.Element => (
   <section className="leaderboard">
     <h2>Leaderboard</h2>
     <div className="leaderboard-list">
@@ -89,6 +85,11 @@ const Leaderboard = ({ watches, leaderId }: LeaderboardProps): JSX.Element => (
             <span>Score: <strong>{watch.score}</strong></span>
             <span>Win rate: <strong>{winRate(watch).toFixed(1)}%</strong></span>
             <span>{watch.wins}W/{watch.losses}L</span>
+
+            <div className="leader-hover-card" role="tooltip" aria-hidden="true">
+              <img src={watch.imageUrl} alt={`${watch.brand} ${watch.model}`} className="leader-hover-image" />
+              <a href={watch.productUrl} target="_blank" rel="noreferrer">Open product page</a>
+            </div>
           </div>
         );
       })}
