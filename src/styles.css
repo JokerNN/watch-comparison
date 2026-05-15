@@ -1,0 +1,98 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #0f172a;
+  background: #f3f4f6;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+h1 { margin: 0; }
+.progress { margin: 0.5rem 0 1rem; color: #334155; }
+
+.controls, .actions-row { display: flex; gap: 0.6rem; }
+.actions-row { margin: 1rem 0 0.25rem; }
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+}
+
+.choose-button { width: 100%; background: #0f172a; color: #fff; }
+.secondary { background: #e2e8f0; color: #0f172a; }
+.danger { background: #fee2e2; color: #b91c1c; }
+
+.voting-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.watch-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.watch-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12); }
+.leader-highlight { outline: 3px solid #60a5fa; }
+.vote-flash { animation: voteFlash 220ms ease-out; }
+
+@keyframes voteFlash {
+  from { transform: scale(1); box-shadow: 0 0 0 rgba(34, 197, 94, 0); }
+  to { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25); }
+}
+
+.watch-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+.watch-content { padding: 1rem; }
+.watch-brand { margin: 0; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; font-size: 0.8rem; }
+.watch-notes { color: #475569; min-height: 2.8em; }
+
+.leaderboard { margin-top: 1.25rem; background: #fff; border-radius: 14px; padding: 0.9rem; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08); }
+.leaderboard h2 { margin-top: 0.2rem; }
+.leaderboard-list { display: grid; gap: 0.45rem; }
+.leader-row {
+  display: grid;
+  grid-template-columns: 60px 1.8fr 1fr 1fr 0.7fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.6rem;
+  border-radius: 10px;
+  background: #f8fafc;
+  font-size: 0.92rem;
+}
+.leader-row-top { background: #dbeafe; }
+.rank { font-weight: 700; }
+.name { font-weight: 600; }
+
+@media (max-width: 800px) {
+  .voting-grid { grid-template-columns: 1fr; }
+  .leader-row {
+    grid-template-columns: 52px 1fr;
+  }
+  .leader-row span:nth-child(n+3) {
+    grid-column: 2;
+  }
+}
