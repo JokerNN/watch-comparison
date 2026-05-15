@@ -6,6 +6,7 @@ interface Watch {
   model: string;
   notes: string;
   imageUrl: string;
+  productUrl: string;
   wins: number;
   losses: number;
   totalVotes: number;
@@ -32,16 +33,16 @@ interface LeaderboardProps {
 const STORAGE_KEY = 'birthday-watch-battle-state-v1';
 
 const wishlist: Omit<Watch, 'wins' | 'losses' | 'totalVotes' | 'score'>[] = [
-  { id: 1, brand: 'Longines', model: 'HydroConquest 2026', notes: 'Blue bezel, black dial, mesh bracelet', imageUrl: 'https://placehold.co/800x500?text=Longines+HydroConquest+2026' },
-  { id: 2, brand: 'Longines', model: 'Conquest', notes: 'Classic sport watch', imageUrl: 'https://placehold.co/800x500?text=Longines+Conquest' },
-  { id: 3, brand: 'Oris', model: 'Aquis Date', notes: 'Modern dive watch profile', imageUrl: 'https://placehold.co/800x500?text=Oris+Aquis+Date' },
-  { id: 4, brand: 'Tudor', model: 'Royal', notes: 'Blue dial', imageUrl: 'https://placehold.co/800x500?text=Tudor+Royal+Blue+Dial' },
-  { id: 5, brand: 'Christopher Ward', model: 'C1 Bel Canto', notes: 'Chiming complication design', imageUrl: 'https://placehold.co/800x500?text=Christopher+Ward+C1+Bel+Canto' },
-  { id: 6, brand: 'Oris', model: 'Big Crown Pointer Date', notes: 'Pointer-date heritage styling', imageUrl: 'https://placehold.co/800x500?text=Oris+Big+Crown+Pointer+Date' },
-  { id: 7, brand: 'Oris', model: 'ProPilot X Calibre 400', notes: 'Contemporary pilot watch', imageUrl: 'https://placehold.co/800x500?text=Oris+ProPilot+X+Calibre+400' },
-  { id: 8, brand: 'Omega', model: 'Seamaster Diver 300M', notes: 'Blue dial', imageUrl: 'https://placehold.co/800x500?text=Omega+Seamaster+Diver+300M+Blue' },
-  { id: 9, brand: 'Omega', model: 'Seamaster Aqua Terra', notes: 'Blue dial', imageUrl: 'https://placehold.co/800x500?text=Omega+Seamaster+Aqua+Terra+Blue' },
-  { id: 10, brand: 'Maurice Lacroix', model: 'AIKON Automatic', notes: 'Integrated bracelet sports style', imageUrl: 'https://placehold.co/800x500?text=Maurice+Lacroix+AIKON+Automatic' },
+  { id: 1, brand: 'Longines', model: 'HydroConquest', notes: 'Blue bezel, black dial, mesh bracelet', imageUrl: 'https://www.longines.com/uploads/watchshare/facebook_image/watches-conquest-l3-781-4-56-6.png', productUrl: 'https://www.longines.com/en-us/p/watch-hydroconquest-l3-781-4-56-6' },
+  { id: 2, brand: 'Longines', model: 'Conquest', notes: 'Classic sport watch', imageUrl: 'https://www.longines.com/uploads/watchshare/facebook_image/watches-conquest-l3-430-4-92-6.png', productUrl: 'https://www.longines.com/en-us/p/watch-conquest-l3-430-4-92-6' },
+  { id: 3, brand: 'Oris', model: 'Aquis Date', notes: 'Modern dive watch profile', imageUrl: 'https://www.oris.ch/data/products/01-733-7730-4155-07-8-24-05PEB/images/01-733-7730-4155-07-8-24-05PEB.png', productUrl: 'https://www.oris.ch/en-US/product/watch/aquis/aquis-date/01-733-7730-4155-07-8-24-05PEB' },
+  { id: 4, brand: 'Tudor', model: 'Royal', notes: 'Blue dial', imageUrl: 'https://www.tudorwatch.com/-/media/model-assets/upright/m28600-0005.png', productUrl: 'https://www.tudorwatch.com/en/watches/tudor-royal/m28600-0005' },
+  { id: 5, brand: 'Christopher Ward', model: 'C1 Bel Canto', notes: 'Chiming complication design', imageUrl: 'https://www.christopherward.com/on/demandware.static/-/Sites-cw-master-catalog/default/dw6dfb57a8/images/watches/C01-41APT2-T00B0-VB_front.jpg', productUrl: 'https://www.christopherward.com/int/the-bel-canto-collection/C01-41APT2-T00B0-VB.html' },
+  { id: 6, brand: 'Oris', model: 'Big Crown Pointer Date', notes: 'Pointer-date heritage styling', imageUrl: 'https://www.oris.ch/data/products/01-754-7741-4065-07-8-20-22/images/01-754-7741-4065-07-8-20-22.png', productUrl: 'https://www.oris.ch/en-US/product/watch/big-crown/big-crown-pointer-date/01-754-7741-4065-07-8-20-22' },
+  { id: 7, brand: 'Oris', model: 'ProPilot X Calibre 400', notes: 'Contemporary pilot watch', imageUrl: 'https://www.oris.ch/data/products/01-400-7778-7155-07-7-20-01TLC/images/01-400-7778-7155-07-7-20-01TLC.png', productUrl: 'https://www.oris.ch/en-US/product/watch/propilot/propilot-x-calibre-400/01-400-7778-7155-07-7-20-01TLC' },
+  { id: 8, brand: 'Omega', model: 'Seamaster Diver 300M', notes: 'Blue dial', imageUrl: 'https://www.omegawatches.com/media/catalog/product/o/m/omega-seamaster-diver-300m-co-axial-master-chronometer-42-mm-21030422003001-l.png', productUrl: 'https://www.omegawatches.com/en-us/watch-omega-seamaster-diver-300m-co-axial-master-chronometer-42-mm-21030422003001' },
+  { id: 9, brand: 'Omega', model: 'Seamaster Aqua Terra', notes: 'Blue dial', imageUrl: 'https://www.omegawatches.com/media/catalog/product/o/m/omega-seamaster-aqua-terra-150m-co-axial-master-chronometer-41-mm-22010412103004-l.png', productUrl: 'https://www.omegawatches.com/en-us/watch-omega-seamaster-aqua-terra-150m-co-axial-master-chronometer-41-mm-22010412103004' },
+  { id: 10, brand: 'Maurice Lacroix', model: 'AIKON Automatic', notes: 'Integrated bracelet sports style', imageUrl: 'https://www.mauricelacroix.com/dw/image/v2/BCVJ_PRD/on/demandware.static/-/Sites-masterCatalog_MauriceLacroix/default/dw1f4bc26c/images/large/AI6008-SS002-430-1.png', productUrl: 'https://www.mauricelacroix.com/ch_en/watches/watches-aikon/watches-aikon-automatic/aikon-automatic-date-42mm/AI6008-SS002-430-1.html' },
 ];
 
 const createInitialWatches = (): Watch[] => wishlist.map((watch) => ({ ...watch, wins: 0, losses: 0, totalVotes: 0, score: 0 }));
@@ -65,6 +66,9 @@ const WatchCard = ({ watch, onChoose, highlighted = false, flash = false }: Watc
       <p className="watch-brand">{watch.brand}</p>
       <h3>{watch.model}</h3>
       <p className="watch-notes">{watch.notes}</p>
+      <p>
+        <a href={watch.productUrl} target="_blank" rel="noreferrer">View product page</a>
+      </p>
       <button className="choose-button" onClick={onChoose}>
         Choose this
       </button>
