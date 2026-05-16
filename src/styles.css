@@ -63,7 +63,8 @@ button {
 .watch-image {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f8fafc;
   display: block;
 }
 .watch-content { padding: 1rem; }
@@ -127,7 +128,8 @@ button {
 .leader-hover-image {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f8fafc;
   border-radius: 8px;
   display: block;
   margin-bottom: 0.35rem;
